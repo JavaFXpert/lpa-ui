@@ -20,6 +20,16 @@
   //events.push(goal2calendarEvent(data.goals[i]));
  }
  
+ // Add the Inbox
+let inbox = {
+  id: null,
+  goal_name: 'Inbox',
+  timeframe_date: '2023-08-13',
+  priority: 'medium priority',
+  status: 'not started'
+ }
+ events.push(goal2calendarEvent(inbox));
+
  console.log(events, 'events');
 
 
