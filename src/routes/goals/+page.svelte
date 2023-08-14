@@ -21,10 +21,12 @@
  }
  
  // Add the Inbox
+let today = new Date();
+let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 let inbox = {
   id: null,
   goal_name: 'Inbox',
-  timeframe_date: '2023-08-13',
+  timeframe_date: todayStr,
   priority: 'medium priority',
   status: 'not started'
  }
