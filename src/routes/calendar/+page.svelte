@@ -39,7 +39,15 @@
   let durationNumber = Number(lpaEvent.duration_hrs);
   // Then, create an end date that is the start date plus the duration number
   let endDateTime = new Date(startDateTime.getTime() + durationNumber * 60 * 60 * 1000);
+  console.log(endDateTime, 'endDateTime before tz_offset');
+
+  let tz_offset = lpaEvent.tz_offset;
+  endDateTime = new Date(endDateTime.getTime() + tz_offset * 60 * 60 * 1000);
+  console.log(endDateTime, 'endDateTime after tz_offset');
+
   let endTimestamp = endDateTime.toISOString().slice(0, 19).replace('T', ' ');
+  console.log(endTimestamp, 'endTimestamp');
+  
   let bgColor = mixColor(lpaEvent.business_or_personal, lpaEvent.event_or_task);
 
   return {
