@@ -38,10 +38,11 @@ let inbox = {
  let plugins = [TimeGrid, List, Interaction];
  let options = {
   view: 'listYear',
-  "events": events
+  "events": events,
+  slotMinTime: '06:00:00',
  };
 
- function goal2calendarEvent(goal) {
+ function goal2calendarEvent(goal, todayStr) {
   // Find the tasks associated with the goal
   let tasks = data.tasks.filter(task => task.goal_id == goal.id);
   console.log(tasks, 'tasks');
@@ -52,10 +53,14 @@ let inbox = {
    tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status;
   }
 
+  let goal_display_date = goal.timeframe_date
+  if (goal.priority == 'ongoing priority' || goal.priority == 'someday priority') {
+    goal_display_date = todayStr
+  }
   return {
-    title: goal.goal_name + tasksString,
-    start: goal.timeframe_date,
-    end: goal.timeframe_date,
+    title: goal.goal_name + ", " + goal.priority + ", " + goal.status + ", " + tasksString,
+    start: goal_display_date,
+    end: goal_display_date,
     allDay: true,
     backgroundColor: goal.priority == 'high_priority' ? 'red' : 'green',
     borderColor: goal.status == 'completed' ? 'black' : 'blue',

@@ -21,8 +21,10 @@
  let plugins = [TimeGrid, List, Interaction];
  let options = {
   view: 'timeGridWeek',
-  "events": events
- };
+  "events": events,
+  slotMinTime: '06:00:00',
+  slotMaxTime: '22:00:00'
+};
 
  function lpaEvent2calendarEvent(lpaEvent) {
   // timestamp is formatted as YYYY-MM-DD HH:MM:SS
