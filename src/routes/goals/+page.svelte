@@ -48,7 +48,8 @@ let inbox = {
   // Create a line for each task
   let tasksString = '';
   for (let i = 0; i < tasks.length; i++) {
-   tasksString += '\n• ' + tasks[i].task_name + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status;
+   let b_or_p = tasks[i].for_business ? 'business' : 'personal';
+   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status;
   }
 
   return {
