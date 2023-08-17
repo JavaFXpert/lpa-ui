@@ -27,8 +27,9 @@ let inbox = {
   id: null,
   goal_name: 'Inbox',
   timeframe_date: todayStr,
-  priority: 'medium priority',
-  status: 'not started'
+  priority: '',
+  status: '',
+  urgency_factor: 0.0
  }
  events.push(goal2calendarEvent(inbox));
 
@@ -58,7 +59,7 @@ let inbox = {
     goal_display_date = todayStr
   }
   return {
-    title: goal.goal_name + ", " + goal.priority + ", " + goal.status + ", " + tasksString,
+    title: goal.goal_name + ", " + goal.priority + ", " + goal.status + ", urg: " + goal.urgency_factor + tasksString,
     start: goal_display_date,
     end: goal_display_date,
     allDay: true,
