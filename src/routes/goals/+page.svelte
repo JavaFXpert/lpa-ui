@@ -59,7 +59,7 @@ let inbox = {
     goal_display_date = todayStr
   }
   return {
-    title: goal.goal_name + ", " + goal.priority + ", " + goal.status + ", urg: " + goal.urgency_factor + ", compl: " + goal.projected_completion_date  + ", float: " + goal.num_float_days + tasksString,
+    title: goal.goal_name + ", " + goal.priority + ", " + goal.status + ", urg: " + goal.urgency_factor + ", proj compl: " + goal.projected_completion  + ", float: " + goal.num_float_days + tasksString,
     start: goal_display_date,
     end: goal_display_date,
     allDay: true,
