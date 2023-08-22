@@ -22,8 +22,10 @@
  let options = {
   view: 'timeGridWeek',
   "events": events,
-  slotMinTime: '06:00:00',
-  slotMaxTime: '22:00:00'
+  slotMinTime: '07:00:00',
+  slotMaxTime: '21:00:00',
+  slotDuration: '00:15:00',
+  slotEventOverlap: false,
 };
 
  function lpaEvent2calendarEvent(lpaEvent) {

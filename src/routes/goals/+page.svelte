@@ -9,6 +9,8 @@
  console.log(data.goals.length, 'data.goals.length');
  console.log(data.tasks.length, 'data.tasks.length');
 
+ let SHOW_URGENCY_FACTOR = false;
+
  let events = [];
  // iterate over data using a for loop
  for (let i = 0; i < data.goals.length; i++) {
@@ -54,12 +56,24 @@ let inbox = {
    tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status;
   }
 
-  let goal_display_date = goal.timeframe_date
+  let goal_display_date = goal.timeframe_date;
+  let goal_status_str = ", " + goal.status;
+  let urgency_factor_str = SHOW_URGENCY_FACTOR ? ", urg: " + goal.urgency_factor.toFixed(2) : '';
+  let proj_compl_str = ", projected completion: " + goal.projected_completion;
+  let float_days_str = ", float: " + goal.num_float_days + " days";
   if (goal.priority == 'ongoing priority' || goal.priority == 'someday priority') {
-    goal_display_date = todayStr
+    goal_display_date = todayStr;
+    goal_status_str = '';
+    proj_compl_str = '';
+    float_days_str = '';
+  }
+
+  let goal_header = goal.goal_name + ", " + goal.priority + goal_status_str + urgency_factor_str + proj_compl_str  + float_days_str;
+  if (goal.goal_name == 'Inbox') {
+    goal_header = 'Inbox:';
   }
   return {
-    title: goal.goal_name + ", " + goal.priority + ", " + goal.status + ", urg: " + goal.urgency_factor + ", proj compl: " + goal.projected_completion  + ", float: " + goal.num_float_days + " days" + tasksString,
+    title: goal_header + tasksString,
     start: goal_display_date,
     end: goal_display_date,
     allDay: true,
