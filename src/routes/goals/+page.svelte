@@ -9,7 +9,8 @@
  console.log(data.goals.length, 'data.goals.length');
  console.log(data.tasks.length, 'data.tasks.length');
 
- let SHOW_URGENCY_FACTOR = false;
+ let SHOW_URGENCY_FACTOR = true;
+ let SHOW_COMPLETED_TASKS = false;
 
  let events = [];
  // iterate over data using a for loop
@@ -48,6 +49,21 @@ let inbox = {
  function goal2calendarEvent(goal, todayStr) {
   // Find the tasks associated with the goal
   let tasks = data.tasks.filter(task => task.goal_id == goal.id);
+  if (!SHOW_COMPLETED_TASKS) {
+   tasks = tasks.filter(task => task.status != 'completed');
+  }
+  // Sort the tasks by priority, where high_priority is first, then medium_priority, then low_priority
+  tasks.sort((a, b) => {
+   if (a.priority.startsWith('high') && !b.priority.startsWith('high')) {
+    return -1;
+   } else if (a.priority.startsWith('medium') && b.priority.startsWith('low')) {
+    return -1;
+   } else if (a.priority.startsWith('low') && b.priority.startsWith('medium')) {
+    return 1;
+   } else {
+    return 0;
+   }
+  });
   console.log(tasks, 'tasks');
   // Create a line for each task
   let tasksString = '';

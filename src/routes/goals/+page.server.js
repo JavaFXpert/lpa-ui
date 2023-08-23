@@ -1,11 +1,13 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({fetch, params}) {
  try {
-  const URL = `https://lifeplanningassistant.javafxpert.repl.co/fetch_goals_summary`;
+  const URL = `
+  https://life-planning-assistant-JavaFXpert.replit.app/fetch_goals_summary`;
   const res = await fetch(URL);
   const goals = await res.json();
 
-  const TASKS_URL = `https://lifeplanningassistant.javafxpert.repl.co/fetch_tasks_summary`;
+  const TASKS_URL = `
+  https://life-planning-assistant-JavaFXpert.replit.app/fetch_tasks_summary`;
   const res_tasks = await fetch(TASKS_URL);
   const tasks = await res_tasks.json();
 
