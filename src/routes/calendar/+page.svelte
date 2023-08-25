@@ -22,7 +22,7 @@
  let options = {
   buttonText: {close: 'Close', dayGridMonth: 'month', listDay: 'list', listMonth: 'month', listWeek: 'list', listYear: 'list', resourceTimeGridDay: 'day', resourceTimeGridWeek: 'week', timeGridDay: 'day', timeGridWeek: 'week', today: 'today'},
   headerToolbar: {start: 'title', center: 'timeGridDay, timeGridWeek, listMonth', end: 'today prev,next'},
-  view: 'timeGridWeek',
+  view: 'listMonth',
   "events": events,
   slotMinTime: '07:00:00',
   slotMaxTime: '21:00:00',
