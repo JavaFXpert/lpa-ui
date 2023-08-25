@@ -20,6 +20,8 @@
 
  let plugins = [TimeGrid, List, Interaction];
  let options = {
+  buttonText: {close: 'Close', dayGridMonth: 'month', listDay: 'list', listMonth: 'month', listWeek: 'list', listYear: 'list', resourceTimeGridDay: 'day', resourceTimeGridWeek: 'week', timeGridDay: 'day', timeGridWeek: 'week', today: 'today'},
+  headerToolbar: {start: 'title', center: 'timeGridDay, timeGridWeek, listMonth', end: 'today prev,next'},
   view: 'timeGridWeek',
   "events": events,
   slotMinTime: '07:00:00',
