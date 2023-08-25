@@ -51,8 +51,12 @@
 
   let endTimestamp = endDateTime.toISOString().slice(0, 19).replace('T', ' ');
   console.log(endTimestamp, 'endTimestamp');
+
+  let waiting = lpaEvent.event_or_task == 'task' && 
+    lpaEvent.status && 
+    lpaEvent.status.toLowerCase() == 'waiting';
   
-  let bgColor = mixColor(lpaEvent.business_or_personal, lpaEvent.event_or_task);
+  let bgColor = mixColor(lpaEvent.business_or_personal, lpaEvent.event_or_task, waiting);
 
   return {
     title: lpaEvent.name,
@@ -64,15 +68,16 @@
   }
  }  
 
- function mixColor(business_or_personal, event_or_task) {
+ function mixColor(business_or_personal, event_or_task, waiting) {
   // We want business events to be black and personal events to be blue
   // We want tasks to be lighter shades of the same colors
-  // Here is the code to make that happen:
+  // If the status for business task is 'waiting', then we want it to be light orange.
+  // If the status for personal task is 'waiting', then we want it to be yellow.
   if (business_or_personal.toLowerCase() == 'business') {
-   return event_or_task.toLowerCase() == 'event' ? 'black' : 'gray';
+   return event_or_task.toLowerCase() == 'event' ? 'black' : waiting ? 'lightgray' : 'gray';
   }
   else {
-   return event_or_task.toLowerCase() == 'event' ? 'blue' : 'lightblue';
+   return event_or_task.toLowerCase() == 'event' ? 'darkblue' : waiting ? 'lightblue' :  'blue';
   }
 
   let color = event_or_task == 'event' ? 'black' : 'blue';
