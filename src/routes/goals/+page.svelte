@@ -50,7 +50,7 @@ let inbox = {
   // Find the tasks associated with the goal
   let tasks = data.tasks.filter(task => task.goal_id == goal.id);
   if (!SHOW_COMPLETED_TASKS) {
-   tasks = tasks.filter(task => task.status != 'completed');
+   tasks = tasks.filter(task => task.status.toLowerCase() != 'completed');
   }
   // Sort the tasks by priority, where high_priority is first, then medium_priority, then low_priority
   tasks.sort((a, b) => {
