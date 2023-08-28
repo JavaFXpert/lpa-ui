@@ -68,10 +68,11 @@ let inbox = {
   // Create a line for each task
   let tasksString = '';
   for (let i = 0; i < tasks.length; i++) {
+   let date_created_str = tasks[i].date_created ? ', created: ' + tasks[i].date_created : '';
    let b_or_p = tasks[i].for_business ? 'business' : 'personal';
-   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status;
+   let recurrence_str = tasks[i].recurrence ? ', recurrence: ' + tasks[i].recurrence : '';
+   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str + date_created_str;
   }
-
   let goal_display_date = goal.timeframe_date;
   let goal_status_str = ", " + goal.status;
   let urgency_factor_str = SHOW_URGENCY_FACTOR ? ", urg: " + goal.urgency_factor.toFixed(2) : '';
