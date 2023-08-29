@@ -3,7 +3,7 @@ export async function load({fetch, params}) {
  try {
   // https://life-planning-assistant-JavaFXpert.replit.app/fetch_calendar_summary
   const URL = `
-  https://lifeplanningassistant.javafxpert.repl.co/fetch_calendar_summary`;
+  https://life-planning-assistant-javafxpert.replit.app/fetch_calendar_summary`;
   const res = await fetch(URL);
   const lpaEvents = await res.json();
    return { lpaEvents };
