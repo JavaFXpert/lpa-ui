@@ -13,6 +13,20 @@
  let SHOW_COMPLETED_TASKS = false;
 
  let events = [];
+
+  // Add the Inbox
+  let today = new Date();
+ let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+ let inbox = {
+  id: null,
+  goal_name: 'Inbox',
+  timeframe_date: todayStr,
+  priority: '',
+  status: '',
+  urgency_factor: 0.0
+ }
+ events.push(goal2calendarEvent(inbox));
+
  // iterate over data using a for loop
  for (let i = 0; i < data.goals.length; i++) {
   console.log(data.goals[i], 'data.goals[i]');
@@ -23,19 +37,6 @@
   //events.push(goal2calendarEvent(data.goals[i]));
  }
  
- // Add the Inbox
-let today = new Date();
-let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-let inbox = {
-  id: null,
-  goal_name: 'Inbox',
-  timeframe_date: todayStr,
-  priority: '',
-  status: '',
-  urgency_factor: 0.0
- }
- events.push(goal2calendarEvent(inbox));
-
  console.log(events, 'events');
 
 
@@ -46,7 +47,7 @@ let inbox = {
   slotMinTime: '06:00:00',
  };
 
- function goal2calendarEvent(goal, todayStr) {
+ function goal2calendarEvent(goal) {
   // Find the tasks associated with the goal
   let tasks = data.tasks.filter(task => task.goal_id == goal.id);
   if (!SHOW_COMPLETED_TASKS) {
@@ -68,18 +69,29 @@ let inbox = {
   // Create a line for each task
   let tasksString = '';
   for (let i = 0; i < tasks.length; i++) {
-   let date_created_str = tasks[i].date_created ? ', created: ' + tasks[i].date_created : '';
+   // let date_created_str = tasks[i].date_created ? ', created: ' + tasks[i].date_created : '';
    let b_or_p = tasks[i].for_business ? 'business' : 'personal';
-   let recurrence_str = tasks[i].recurrence ? ', recurrence: ' + tasks[i].recurrence : '';
-   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str + date_created_str;
+   let recurrence_str = (tasks[i].recurrence && !tasks[i].recurrence == 'none') ? ', recurrence: ' + tasks[i].recurrence : '';
+   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str;
   }
   let goal_display_date = goal.timeframe_date;
   let goal_status_str = ", " + goal.status;
   let urgency_factor_str = SHOW_URGENCY_FACTOR ? ", urg: " + goal.urgency_factor.toFixed(2) : '';
   let proj_compl_str = ", projected completion: " + goal.projected_completion;
   let float_days_str = ", float: " + goal.num_float_days + " days";
-  if (goal.priority == 'ongoing priority' || goal.priority == 'someday priority') {
-    goal_display_date = todayStr;
+  
+  let tday = new Date();
+  let tdayStr = tday.getFullYear() + '-' + (tday.getMonth() + 1) + '-' + tday.getDate();
+  let yearFromYesterdayStr = (tday.getFullYear() + 1) + '-' + (tday.getMonth() + 1) + '-' + (tday.getDate() - 1); 
+  console.log(yearFromYesterdayStr, '==========yearFromYesterdayStr')
+  if (goal.priority.startsWith('ongoing')) {
+    goal_display_date = tdayStr;
+    goal_status_str = '';
+    proj_compl_str = '';
+    float_days_str = '';
+  }
+  if (goal.priority.startsWith('someday')) {
+    goal_display_date = yearFromYesterdayStr;
     goal_status_str = '';
     proj_compl_str = '';
     float_days_str = '';
