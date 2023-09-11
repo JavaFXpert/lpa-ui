@@ -31,27 +31,25 @@
 };
 
  function lpaEvent2calendarEvent(lpaEvent) {
-  // timestamp is formatted as YYYY-MM-DD HH:MM:SS
-  // we need to convert it to a time, then add a duration to it, and then convert it back to a timestamp
-  // let timestamp = new Date(lpaEvent.timestamp);
-  // let duration = new Date(lpaEvent.duration);
-  // let end = new Date(timestamp.getTime() + duration.getTime());
-  // console.log(timestamp, 'timestamp'); 
-
   let startDateTime = createDateFromString(lpaEvent.timestamp);
   console.log(startDateTime, 'startDateTime');
+
   // Add event duration to the startDateTime
   // First, create a number from the duration as a string
   let durationNumber = Number(lpaEvent.duration_hrs);
-  // Then, create an end date that is the start date plus the duration number
-  let endDateTime = new Date(startDateTime.getTime() + durationNumber * 60 * 60 * 1000);
-  console.log(endDateTime, 'endDateTime before tz_offset');
 
-  let tz_offset = lpaEvent.tz_offset;
-  endDateTime = new Date(endDateTime.getTime() + tz_offset * 60 * 60 * 1000);
-  console.log(endDateTime, 'endDateTime after tz_offset');
+  // get the hour and minute from the timestamp into two separate variables
+  let [hour, minute] = lpaEvent.timestamp.split(' ')[1].split(':').map(Number);
 
-  let endTimestamp = endDateTime.toISOString().slice(0, 19).replace('T', ' ');
+  // add the integer portion of duration_number to the hour and minute
+  hour += Math.floor(durationNumber);
+
+  // add the decimal portion of duration_number to the minute
+  minute += durationNumber % 1 * 60;
+
+  // Reassemble the timestamp
+  let endTimestamp = lpaEvent.timestamp.split(' ')[0] + ' ' + hour + ':' + minute + ':00';
+
   console.log(endTimestamp, 'endTimestamp');
 
   let waiting = lpaEvent.event_or_task == 'task' && 
