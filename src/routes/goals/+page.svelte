@@ -15,7 +15,7 @@
  let events = [];
 
   // Add the Inbox
-  let today = new Date();
+ let today = new Date();
  let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
  let inbox = {
   id: null,
