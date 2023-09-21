@@ -5,10 +5,8 @@
  import List from '@event-calendar/list';
 
  export let data;
- //console.log(data, 'goals');
- console.log(data.goals.length, 'data.goals.length');
- console.log(data.tasks.length, 'data.tasks.length');
-
+ console.log(data, 'data')
+ console.log(data.swot, 'data.swot')
  let SHOW_URGENCY_FACTOR = true;
  let SHOW_COMPLETED_TASKS = false;
 
