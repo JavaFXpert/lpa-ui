@@ -6,15 +6,43 @@
 
  export let data;
  console.log(data, 'data')
+ console.log(data.mission, 'data.mission')
+ console.log(data.vision, 'data.vision')
  console.log(data.swot, 'data.swot')
  let SHOW_URGENCY_FACTOR = true;
  let SHOW_COMPLETED_TASKS = false;
 
  let events = [];
 
-  // Add the Inbox
  let today = new Date();
- let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+ let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(); 
+ 
+ // Add the personal mission statement
+ let mission = {
+  artifact_name: 'Personal Mission Statement',
+  artifact_text: data.mission,
+  timeframe_date: todayStr,
+ }
+ events.push(artifact2calendarEvent(mission));
+
+ // Add the personal vision statement
+ let vision = {
+  artifact_name: 'Personal Vision Statement',
+  artifact_text: data.vision,
+  timeframe_date: todayStr,
+ }
+ events.push(artifact2calendarEvent(vision));
+
+ // Add the personal SWOT analysis
+ let swot = {
+  artifact_name: 'Personal SWOT Analysis',
+  artifact_text: data.swot,
+  timeframe_date: todayStr,
+ }
+ events.push(artifact2calendarEvent(swot));
+
+
+ // Add the Inbox
  let inbox = {
   id: null,
   goal_name: 'Inbox',
@@ -109,7 +137,23 @@
     borderColor: goal.status == 'completed' ? 'black' : 'blue',
     textColor: 'white'
   }
+ }
+ 
+
+ function artifact2calendarEvent(artifact) {
+  let artifact_header = artifact.artifact_name + ":\n" + artifact.artifact_text;
+  let artifact_display_date = artifact.timeframe_date;
+  return {
+    title: artifact_header,
+    start: artifact_display_date,
+    end: artifact_display_date,
+    allDay: true,
+    backgroundColor: 'blue',
+    borderColor: 'blue',
+    textColor: 'white'
+  }
  }  
+
 </script>
 
 <Calendar {plugins} {options} />
