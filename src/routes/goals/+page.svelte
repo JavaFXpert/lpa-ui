@@ -123,7 +123,7 @@
     float_days_str = '';
   }
 
-  let goal_header = goal.goal_name + ", " + goal.priority + goal_status_str + urgency_factor_str + proj_compl_str  + float_days_str;
+  let goal_header = goal.goal_name + ", priority: " + goal.priority + goal_status_str + urgency_factor_str + proj_compl_str  + float_days_str;
   if (goal.goal_name == 'Inbox') {
     goal_header = 'Inbox:';
   }
@@ -132,7 +132,7 @@
     start: goal_display_date,
     end: goal_display_date,
     allDay: true,
-    backgroundColor: goal.priority == 'high_priority' ? 'red' : 'green',
+    backgroundColor: 'green',
     borderColor: goal.status == 'completed' ? 'black' : 'blue',
     textColor: 'white'
   }
