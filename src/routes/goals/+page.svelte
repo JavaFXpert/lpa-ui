@@ -18,29 +18,34 @@
  let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(); 
  
  // Add the personal mission statement
- let mission = {
-  artifact_name: 'Personal Mission Statement',
-  artifact_text: data.mission,
-  timeframe_date: todayStr,
+ if (data.mission != null) {
+  let mission = {
+   artifact_name: 'Personal Mission Statement',
+   artifact_text: data.mission,
+   timeframe_date: todayStr,
+  }
+  events.push(artifact2calendarEvent(mission));
  }
- events.push(artifact2calendarEvent(mission));
 
  // Add the personal vision statement
- let vision = {
-  artifact_name: 'Personal Vision Statement',
-  artifact_text: data.vision,
-  timeframe_date: todayStr,
+ if (data.mission != null) {
+  let vision = {
+   artifact_name: 'Personal Vision Statement',
+   artifact_text: data.vision,
+   timeframe_date: todayStr,
+  }
+  events.push(artifact2calendarEvent(vision));
  }
- events.push(artifact2calendarEvent(vision));
 
  // Add the personal SWOT analysis
- let swot = {
-  artifact_name: 'Personal SWOT Analysis',
-  artifact_text: data.swot,
-  timeframe_date: todayStr,
+ if (data.mission != null) {
+  let swot = {
+   artifact_name: 'Personal SWOT Analysis',
+   artifact_text: data.swot,
+   timeframe_date: todayStr,
+  }
+  events.push(artifact2calendarEvent(swot));
  }
- events.push(artifact2calendarEvent(swot));
-
 
  // Add the Inbox
  let inbox = {
