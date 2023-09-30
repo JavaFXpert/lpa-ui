@@ -28,7 +28,7 @@
  }
 
  // Add the personal vision statement
- if (data.mission != null) {
+ if (data.vision != null) {
   let vision = {
    artifact_name: 'Personal Vision Statement',
    artifact_text: data.vision,
@@ -38,7 +38,7 @@
  }
 
  // Add the personal SWOT analysis
- if (data.mission != null) {
+ if (data.swot != null) {
   let swot = {
    artifact_name: 'Personal SWOT Analysis',
    artifact_text: data.swot,
