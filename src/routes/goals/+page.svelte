@@ -103,6 +103,7 @@
    let b_or_p = tasks[i].for_business ? 'business' : 'personal';
    let recurrence_str = tasks[i].recurrence ? ', recurrence: ' + tasks[i].recurrence : '';
    let dtstart_str = tasks[i].dtstart ? ', dtstart: ' + tasks[i].dtstart : '';
+   let task_desc_str = ", desc: " + task.description;
    tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, priority: ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str + dtstart_str;
   }
   let goal_display_date = goal.timeframe_date;
@@ -110,6 +111,7 @@
   let urgency_factor_str = SHOW_URGENCY_FACTOR ? ", urg: " + goal.urgency_factor.toFixed(2) : '';
   let proj_compl_str = ", projected completion: " + goal.projected_completion;
   let float_days_str = ", float: " + goal.num_float_days + " days";
+  let goal_desc_str = ", desc: " + goal.description;
   
   let tday = new Date();
   let tdayStr = tday.getFullYear() + '-' + (tday.getMonth() + 1) + '-' + tday.getDate();
