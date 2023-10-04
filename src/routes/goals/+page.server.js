@@ -22,7 +22,7 @@ export async function load({fetch, params}) {
   const goals = await res_goals.json();
 
   const TASKS_URL = `
-  https://life-planning-assistant.replit.app/fetch_tasks_summary`;
+  https://lpa.javafxpert.repl.co/fetch_tasks_summary`;
   const res_tasks = await fetch(TASKS_URL);
   const tasks = await res_tasks.json();
 
