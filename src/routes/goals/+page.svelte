@@ -104,7 +104,7 @@
    let recurrence_str = tasks[i].recurrence ? ', recurrence: ' + tasks[i].recurrence : '';
    let dtstart_str = tasks[i].dtstart ? ', dtstart: ' + tasks[i].dtstart : '';
    let task_desc_str = ", desc: " + task.description;
-   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, priority: ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str + dtstart_str;
+   tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, priority: ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str + dtstart_str + task_desc_str;
   }
   let goal_display_date = goal.timeframe_date;
   let goal_status_str = ", " + goal.status;
@@ -130,7 +130,7 @@
     float_days_str = '';
   }
 
-  let goal_header = goal.goal_name + ", priority: " + goal.priority + goal_status_str + urgency_factor_str + proj_compl_str  + float_days_str;
+  let goal_header = goal.goal_name + ", priority: " + goal.priority + goal_status_str + urgency_factor_str + proj_compl_str  + float_days_str + goal_desc_str;
   if (goal.goal_name == 'Inbox') {
     goal_header = 'Inbox:';
   }
