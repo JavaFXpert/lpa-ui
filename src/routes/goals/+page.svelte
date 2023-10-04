@@ -103,7 +103,7 @@
    let b_or_p = tasks[i].for_business ? 'business' : 'personal';
    let recurrence_str = tasks[i].recurrence ? ', recurrence: ' + tasks[i].recurrence : '';
    let dtstart_str = tasks[i].dtstart ? ', dtstart: ' + tasks[i].dtstart : '';
-   let task_desc_str = ", desc: " + task.description;
+   let task_desc_str = ", desc: " + tasks[i].description;
    tasksString += '\n• ' + tasks[i].task_name + ', ' + b_or_p  + ', ' + tasks[i].task_hrs_float + ' hrs, priority: ' + tasks[i].priority + ', ' + tasks[i].status + recurrence_str + dtstart_str + task_desc_str;
   }
   let goal_display_date = goal.timeframe_date;
