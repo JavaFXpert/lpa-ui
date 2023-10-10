@@ -10,6 +10,7 @@
  console.log(data.vision, 'data.vision')
  console.log(data.swot, 'data.swot')
  let SHOW_URGENCY_FACTOR = true;
+ let SHOW_COMPLETED_GOALS = false;
  let SHOW_COMPLETED_TASKS = false;
 
  let events = [];
@@ -58,11 +59,16 @@
  }
  events.push(goal2calendarEvent(inbox));
 
- // iterate over data using a for loop
- for (let i = 0; i < data.goals.length; i++) {
-  console.log(data.goals[i], 'data.goals[i]');
-  events.push(goal2calendarEvent(data.goals[i]));
+ let goals = data.goals;
+  if (!SHOW_COMPLETED_GOALS) {
+    goals = goals.filter(goals => goals.status.toLowerCase() != 'completed');
+  }
+
+ for (let i = 0; i < goals.length; i++) {
+  console.log(goals[i], 'goals[i]');
+  events.push(goal2calendarEvent(goals[i]));
  }
+
  for (let i = 0; i < data.tasks.length; i++) {
   console.log(data.tasks[i], 'data.tasks[i]');
   //events.push(goal2calendarEvent(data.goals[i]));
