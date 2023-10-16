@@ -9,6 +9,7 @@
  console.log(data.mission, 'data.mission')
  console.log(data.vision, 'data.vision')
  console.log(data.swot, 'data.swot')
+ let SHOW_MISSION_STATEMENT = true;
  let SHOW_URGENCY_FACTOR = true;
  let SHOW_COMPLETED_GOALS = false;
  let SHOW_COMPLETED_TASKS = false;
@@ -19,7 +20,7 @@
  let todayStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(); 
  
  // Add the personal mission statement
- if (data.mission != null) {
+ if (SHOW_MISSION_STATEMENT && data.mission != null) {
   let mission = {
    artifact_name: 'Personal Mission Statement',
    artifact_text: data.mission,
