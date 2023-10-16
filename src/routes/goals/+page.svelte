@@ -9,7 +9,7 @@
  console.log(data.mission, 'data.mission')
  console.log(data.vision, 'data.vision')
  console.log(data.swot, 'data.swot')
- let SHOW_MISSION_STATEMENT = true;
+ let SHOW_MISSION_STATEMENT = false;
  let SHOW_URGENCY_FACTOR = true;
  let SHOW_COMPLETED_GOALS = false;
  let SHOW_COMPLETED_TASKS = false;
